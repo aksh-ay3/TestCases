@@ -4,8 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node  src/server"
+    "start:extra": "babel-node extra",
+    "start:extraTs": "tsc-watch --project . --onSuccess \"npm run nodemon\"",
+    "nodemon": "nodemon ./dist/index.js",
+    "lint": "eslint .  --ext .js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
+    "serve": "env-cmd -f .env nodemon src/index.js",
+    "serve:test": "env-cmd -f .env.test nodemon src/index.js",
+    "test_run": "mocha test/api_test.spec.js",
+    "gulp:local": "gulp local"
   },
   "keywords": [],
   "author": "",
@@ -17,22 +25,28 @@
     "nodemon": "^2.0.19"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cookie-session": "^1.4.0",
     "dotenv": "^10.0.0",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "generate-password": "^1.7.0",
+    "gulp": "^4.0.2",
+    "gulp-mocha": "^8.0.0",
     "helmet": "^5.1.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^10.0.0",
+    "mongodb-memory-server": "^8.9.1",
     "mongoose": "^6.4.4",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.19",
-    "passport": "^0.4.1",
-    "passport-google-oauth2": "^0.2.0",
-    "passport-google-oauth20": "^2.0.0"
+    "nodemailer": "^6.7.8",
+    "ts-node-register": "^1.0.0"
   }
 }
